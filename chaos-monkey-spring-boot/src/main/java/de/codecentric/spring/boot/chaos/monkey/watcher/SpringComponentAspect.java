@@ -47,7 +47,7 @@ public class SpringComponentAspect extends ChaosMonkeyBaseAspect {
   public void classInSpringCloudContextPackage() {}
 
   @Around(
-      "classAnnotatedWithComponentPointcut() && !classInSpringCloudContextPackage() "
+      "!classIsFinal() && classAnnotatedWithComponentPointcut() && !classInSpringCloudContextPackage() "
           + "&& allPublicMethodPointcut() && !classInChaosMonkeyPackage()")
   public Object intercept(ProceedingJoinPoint pjp) throws Throwable {
     if (watcherProperties.isComponent()) {

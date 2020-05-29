@@ -44,7 +44,7 @@ public class SpringRepositoryAspectJPA extends ChaosMonkeyBaseAspect {
       "this(org.springframework.data.repository.Repository) || within(@org.springframework.data.repository.RepositoryDefinition *)")
   public void implementsCrudRepository() {}
 
-  @Around("implementsCrudRepository() && allPublicMethodPointcut() && !classInChaosMonkeyPackage()")
+  @Around("!classIsFinal() && implementsCrudRepository() && allPublicMethodPointcut() && !classInChaosMonkeyPackage()")
   public Object intercept(ProceedingJoinPoint pjp) throws Throwable {
 
     if (watcherProperties.isRepository()) {

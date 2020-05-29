@@ -44,7 +44,7 @@ public class SpringControllerAspect extends ChaosMonkeyBaseAspect {
   public void classAnnotatedWithControllerPointcut() {}
 
   @Around(
-      "classAnnotatedWithControllerPointcut() && allPublicMethodPointcut() && !classInChaosMonkeyPackage()")
+      "!classIsFinal() && classAnnotatedWithControllerPointcut() && allPublicMethodPointcut() && !classInChaosMonkeyPackage()")
   public Object intercept(ProceedingJoinPoint pjp) throws Throwable {
 
     if (watcherProperties.isController()) {
